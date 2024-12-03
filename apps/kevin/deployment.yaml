@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kevin
+spec:
+  selector:
+    matchLabels:
+      app: kevin
+  template:
+    metadata:
+      labels:
+        app: kevin
+    spec:
+      containers:
+        - name: kevin
+          image: ghcr.io/shefcompsoc/kevin:latest
+          envFrom:
+            - secretRef:
+                name: kevin
+          resources:
+            requests:
+              cpu: 10m
+              memory: 200M
+            limits:
+              memory: 200M
